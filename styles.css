@@ -1,0 +1,39 @@
+/* Styles for the navigation bar */
+.navbar-custom {
+    background-color: #343a40; /* Dark background color */
+    color: white; /* White text color */
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white; /* White text color */
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffdd57; /* Light yellow color on hover */
+}
+
+/* Styles for the footer */
+.footer-custom {
+    background-color: #343a40; /* Dark background color */
+    color: white; /* White text color */
+    padding: 20px 0; /* Padding for top and bottom */
+}
+
+.footer-custom p {
+    margin: 0; /* Remove default margins */
+}
+
+/* Styles for the dropdown menu */
+.navbar-custom .dropdown-menu {
+    background-color: #343a40; /* Dark background color */
+}
+
+.navbar-custom .dropdown-item {
+    color: white; /* White text color */
+}
+
+.navbar-custom .dropdown-item:hover {
+    background-color: #ffdd57; /* Light yellow background on hover */
+    color: #343a40; /* Dark text color */
+}
