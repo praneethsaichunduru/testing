@@ -11,7 +11,7 @@
 
 .navbar-custom .dropdown-item:hover,
 .navbar-custom .dropdown-item:focus {
-    /*color: #ffdd57;  Light yellow color on hover */
+    color: #ffdd57;  /* Light yellow color on hover */
 }
 
 /* Custom style for the navbar-toggler */
@@ -47,7 +47,7 @@
 
 .navbar-custom .dropdown-item:hover,
 .navbar-custom .dropdown-item:focus {
-    /*background-color: #ffdd57;  Light yellow background on hover */
+    background-color: #ffdd57; /* Light yellow background on hover */
     color: #343a40; /* Dark text color */
 }
 
