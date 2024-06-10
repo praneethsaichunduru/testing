@@ -37,13 +37,15 @@
 /* Styles for the dropdown menu */
 .navbar-custom .dropdown-menu {
     background-color: #343a40; /* Dark background color */
+    border-color: #343a40; /* Dark border color */
 }
 
 .navbar-custom .dropdown-item {
     color: white; /* White text color */
 }
 
-.navbar-custom .dropdown-item:hover {
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
     background-color: #ffdd57; /* Light yellow background on hover */
     color: #343a40; /* Dark text color */
 }
