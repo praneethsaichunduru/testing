@@ -9,7 +9,8 @@
     color: white; /* White text color */
 }
 
-.navbar-custom .nav-link:hover {
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
     color: #ffdd57; /* Light yellow color on hover */
 }
 
@@ -42,6 +43,12 @@
 
 .navbar-custom .dropdown-item {
     color: white; /* White text color */
+}
+
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
+    background-color: #ffdd57; /* Light yellow background on hover */
+    color: #343a40; /* Dark text color */
 }
 
 /* Center table content */
