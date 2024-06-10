@@ -59,8 +59,10 @@
 .table-container th, .table-container td {
     border: 1px solid #ddd;
     text-align: center;
+    horizontal-align: middle; /* Horizontally center content */
     vertical-align: middle; /* Vertically center content */
     padding: 8px; /* Add some padding for better spacing */
+    justify-content: center;
 }
 
 .table-container th {
