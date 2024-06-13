@@ -249,7 +249,7 @@
 						rows[i].style.display = "";
 						matchCount++;
 					} else {
-					rows[i].style.display = "none";
+						rows[i].style.display = "none";
 					}
 				}
 
@@ -257,7 +257,7 @@
 				if (input) {
 					countContainer.textContent = "Matching Rows: " + matchCount;
 				} else {
-				countContainer.textContent = "";
+					countContainer.textContent = "";
 				}
 
 				// Reapply filter when search is cleared
@@ -268,6 +268,7 @@
 
 			function filterTable() {
 				const checkboxes = document.querySelectorAll(".filter-container input[type='checkbox']");
+				const stateSelect = document.getElementById("stateSelect").value;
 				const table = document.getElementById("ppcTable");
 				const rows = table.getElementsByClassName("data-row");
 				let activeFilters = [];
@@ -280,19 +281,24 @@
 				});
 
 				for (let i = 0; i < rows.length; i++) {
-					if (activeFilters.length === 0 || activeFilters.some(filter => rows[i].classList.contains(filter))) {
+					const rowState = rows[i].getElementsByTagName("td")[5].textContent.trim();
+
+					if (
+						(activeFilters.length === 0 || activeFilters.some(filter => rows[i].classList.contains(filter))) &&
+						(stateSelect === "" || rowState === stateSelect)
+					) {
 						rows[i].style.display = "";
 						selectedCount++;
 					} else {
-					rows[i].style.display = "none";
+						rows[i].style.display = "none";
 					}
 				}
 
 				const countContainer = document.getElementById("countContainer");
-				if (activeFilters.length > 0) {
+				if (activeFilters.length > 0 || stateSelect !== "") {
 					countContainer.textContent = "Selected Rows: " + selectedCount;
 				} else {
-				countContainer.textContent = "";
+					countContainer.textContent = "";
 				}
 			}
 
@@ -307,6 +313,7 @@
 				checkboxes.forEach(checkbox => {
 					checkbox.checked = false;
 				});
+				document.getElementById("stateSelect").value = "";
 				filterTable();
 			}
 
@@ -336,13 +343,61 @@
 				<label class="doubtful"><input type="checkbox" value="doubtful" onchange="filterTable()"> <span>Doubtful</span></label>
 				<label class="removed"><input type="checkbox" value="removed" onchange="filterTable()"> <span>Removed</span></label>
 				<label class="replaced"><input type="checkbox" value="replaced" onchange="filterTable()"> <span>Replaced</span></label>
+				<select id="stateSelect" class="form-control" onchange="filterTable()">
+					<option value="">All States</option>
+					<option value="ANDAMAN AND NICOBAR ISLANDS">ANDAMAN AND NICOBAR ISLANDS</option>
+					<option value="ANDHRA PRADESH">ANDHRA PRADESH</option>
+					<option value="ARUNACHAL PRADESH">ARUNACHAL PRADESH</option>
+					<option value="ASSAM">ASSAM</option>
+					<option value="BIHAR">BIHAR</option>
+					<option value="CHANDIGARH">CHANDIGARH</option>
+					<option value="CHHATTISGARH">CHHATTISGARH</option>
+					<option value="DADRA AND NAGAR HAVELI AND DAMAN AND DIU">DADRA AND NAGAR HAVELI AND DAMAN AND DIU</option>
+					<option value="DELHI">DELHI</option>
+					<option value="GOA">GOA</option>
+					<option value="GUJARAT">GUJARAT</option>
+					<option value="HARYANA">HARYANA</option>
+					<option value="HIMACHAL PRADESH">HIMACHAL PRADESH</option>
+					<option value="JAMMU AND KASHMIR">JAMMU AND KASHMIR</option>
+					<option value="JHARKHAND">JHARKHAND</option>
+					<option value="KARNATAKA">KARNATAKA</option>
+					<option value="KERALA">KERALA</option>
+					<option value="LADAKH">LADAKH</option>
+					<option value="LAKSHADWEEP">LAKSHADWEEP</option>
+					<option value="MADHYA PRADESH">MADHYA PRADESH</option>
+					<option value="MAHARASHTRA">MAHARASHTRA</option>
+					<option value="MANIPUR">MANIPUR</option>
+					<option value="MEGHALAYA">MEGHALAYA</option>
+					<option value="MIZORAM">MIZORAM</option>
+					<option value="NAGALAND">NAGALAND</option>
+					<option value="ODISHA">ODISHA</option>
+					<option value="PUDUCHERRY">PUDUCHERRY</option>
+					<option value="PUNJAB">PUNJAB</option>
+					<option value="RAJASTHAN">RAJASTHAN</option>
+					<option value="SIKKIM">SIKKIM</option>
+					<option value="TAMIL NADU">TAMIL NADU</option>
+					<option value="TELANGANA">TELANGANA</option>
+					<option value="TRIPURA">TRIPURA</option>
+					<option value="UTTAR PRADESH">UTTAR PRADESH</option>
+					<option value="UTTARAKHAND">UTTARAKHAND</option>
+					<option value="WEST BENGAL">WEST BENGAL</option>
+				</select>
 				<button class="btn btn-outline-secondary ml-2" onclick="deselectAll()">Deselect All</button>
 			</section>
 			<section class="count-container" id="countContainer"></section>
 			<section class="table-container">
 				<table id="ppcTable" class="table table-striped">
 					<thead>
-						<tr><th>S. No.</th><th>Name of PPC</th><th>Date of Introduction</th><th>Post Office and Rank</th><th>District</th><th>State</th><th>Pincode</th><th>Image</th></tr>
+						<tr>
+							<th>S. No.</th>
+							<th>Name of PPC</th>
+							<th>Date of Introduction</th>
+							<th>Post Office and Rank</th>
+							<th>District</th>
+							<th>State</th>
+							<th>Pincode</th>
+							<th>Image</th>
+						</tr>
 					</thead>
 					<tbody>
 						<tr class="removed data-row"><td>1</td><td>Parliament of India</td><td>13.02.1995</td><td>Sansad Marg NA</td><td>Central Delhi</td><td>DELHI</td><td>110001</td><td><a href="pictures/ppcs/110001-ParliamentofIndia-SansadMargNA.jpg" onclick="showImagePopup('110001-ParliamentofIndia-SansadMargNA.jpg')"><img src="pictures/ppcs/110001-ParliamentofIndia-SansadMargNA.jpg" alt="Parliament of India" width="150" height="100"></a></td></tr>
@@ -700,7 +755,7 @@
 						<tr class="removed data-row"><td>353</td><td>Rang Ghar</td><td>02.01.1979</td><td>Sivasagar HO</td><td>Sivasagar</td><td>ASSAM</td><td>785640</td><td><a href="pictures/ppcs/785640-RangGhar-SivasagarHO.jpg" onclick="showImagePopup('785640-RangGhar-SivasagarHO.jpg')"><img src="pictures/ppcs/785640-RangGhar-SivasagarHO.jpg" alt="Rang Ghar" width="150" height="100"></a></td></tr>
 						<tr class="removed data-row"><td>354</td><td>Sangai Deer</td><td>29.02.1988</td><td>Imphal HO</td><td>Imphal West</td><td>MANIPUR</td><td>795001</td><td><a href="pictures/ppcs/795001-SangaiDeer-ImphalHO.jpg" onclick="showImagePopup('795001-SangaiDeer-ImphalHO.jpg')"><img src="pictures/ppcs/795001-SangaiDeer-ImphalHO.jpg" alt="Sangai Deer" width="150" height="100"></a></td></tr>
 						<tr class="working data-row"><td>355</td><td>Sangai Deer</td><td>10.03.1978</td><td>Moirang SO</td><td>Bishnupur</td><td>MANIPUR</td><td>795133</td><td><a href="pictures/ppcs/795133-SangaiDeer-MoirangSO.jpg" onclick="showImagePopup('795133-SangaiDeer-MoirangSO.jpg')"><img src="pictures/ppcs/795133-SangaiDeer-MoirangSO.jpg" alt="Sangai Deer" width="150" height="100"></a></td></tr>
-						<tr class="removed data-row"><td>356</td><td>Horn and Pipe</td><td>15.12.1977</td><td>Aizawl HO</td><td>Aizawl</td><td>MIZORAM</td><td>796001</td><td><a href="pictures/ppcs/796001-HornandPipe-AizwalHO.jpg" onclick="showImagePopup('796001-HornandPipe-AizwalHO.jpg')"><img src="pictures/ppcs/796001-HornandPipe-AizwalHO.jpg" alt="Horn and Pipe" width="150" height="100"></a></td></tr>
+						<tr class="removed data-row"><td>356</td><td>Horn and Pipe</td><td>15.12.1977</td><td>Aizawl HO</td><td>Aizawl</td><td>MIZORAM</td><td>796001</td><td><a href="pictures/ppcs/796001-HornandPipe-AizawlHO.jpg" onclick="showImagePopup('796001-HornandPipe-AizawlHO.jpg')"><img src="pictures/ppcs/796001-HornandPipe-AizawlHO.jpg" alt="Horn and Pipe" width="150" height="100"></a></td></tr>
 						<tr class="working data-row"><td>357</td><td>Trimurti Rock Sculpture</td><td>01.01.1976</td><td>Bhagabannagar BO</td><td>North Tripura</td><td>TRIPURA</td><td>799279</td><td><a href="pictures/ppcs/799279-TrimurtiRockSculpture-BhagabannagarBO.jpg" onclick="showImagePopup('799279-TrimurtiRockSculpture-BhagabannagarBO.jpg')"><img src="pictures/ppcs/799279-TrimurtiRockSculpture-BhagabannagarBO.jpg" alt="Trimurti Rock Sculpture" width="150" height="100"></a></td></tr>
 						<tr class="working data-row"><td>358</td><td>Didarganj Yakshi</td><td>28.08.1974</td><td>Patna GPO</td><td>Patna</td><td>BIHAR</td><td>800001</td><td><a href="pictures/ppcs/800001-DidarganjYakshi-PatnaGPO.jpg" onclick="showImagePopup('800001-DidarganjYakshi-PatnaGPO.jpg')"><img src="pictures/ppcs/800001-DidarganjYakshi-PatnaGPO.jpg" alt="Didarganj Yakshi" width="150" height="100"></a></td></tr>
 						<tr class="working data-row"><td>359</td><td>Gol Ghar</td><td>Not Available</td><td>Patna GPO</td><td>Patna</td><td>BIHAR</td><td>800001</td><td><a href="pictures/ppcs/800001-GolGhar-PatnaGPO.jpg" onclick="showImagePopup('800001-GolGhar-PatnaGPO.jpg')"><img src="pictures/ppcs/800001-GolGhar-PatnaGPO.jpg" alt="Gol Ghar" width="150" height="100"></a></td></tr>
