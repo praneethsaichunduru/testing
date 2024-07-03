@@ -95,6 +95,21 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+/* Add this CSS rule to styles.css */
+#clearFilter {
+    padding: 10px 15px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#clearFilter:hover {
+    background-color: #ff6347;
+}
+
 .footer {
     background-color: #ff7f50;
     color: white;
