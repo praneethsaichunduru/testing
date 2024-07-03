@@ -37,6 +37,7 @@ function searchPosts() {
 
 function filterByTag(tag) {
     var posts = document.getElementsByClassName('post');
+    var clearFilter = document.getElementById('clearFilter');
     
     for (var i = 0; i < posts.length; i++) {
         var categories = posts[i].getAttribute('data-categories').toLowerCase();
@@ -47,6 +48,19 @@ function filterByTag(tag) {
             posts[i].style.display = 'none';
         }
     }
+
+    clearFilter.style.display = 'block';
+}
+
+function clearFilter() {
+    var posts = document.getElementsByClassName('post');
+    var clearFilter = document.getElementById('clearFilter');
+
+    for (var i = 0; i < posts.length; i++) {
+        posts[i].style.display = '';
+    }
+
+    clearFilter.style.display = 'none';
 }
 
 function clearSearch() {
