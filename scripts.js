@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.header-container').innerHTML = data;
         });
 
+    fetch('header-menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('.header-menu-container').innerHTML = data;
+        });
+
     fetch('footer.html')
         .then(response => response.text())
         .then(data => {
@@ -67,4 +73,8 @@ function clearSearch() {
     document.getElementById('searchInput').value = '';
     document.getElementById('clearSearch').style.display = 'none';
     searchPosts();
+}
+
+function jumpToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
