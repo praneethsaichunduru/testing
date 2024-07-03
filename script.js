@@ -1,66 +1,72 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('.header-container').innerHTML = data;
+        });
+
     fetch('header-menu.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('header-menu').innerHTML = data;
+            document.querySelector('.header-menu-container').innerHTML = data;
         });
 
     fetch('footer.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('footer').innerHTML = data;
+            document.querySelector('.footer-container').innerHTML = data;
         });
 });
 
 function searchPosts() {
-    let input = document.getElementById('searchInput').value.toLowerCase();
-    let posts = document.getElementsByClassName('post');
-    let clearSearch = document.getElementById('clearSearch');
-    let clearFilter = document.getElementById('clearFilter');
-    let filterApplied = false;
-
-    for (let i = 0; i < posts.length; i++) {
-        let post = posts[i];
-        let text = post.textContent.toLowerCase();
-        if (text.includes(input)) {
-            post.style.display = '';
-            filterApplied = true;
-        } else {
-            post.style.display = 'none';
-        }
+    var input = document.getElementById('searchInput').value.toLowerCase();
+    var posts = document.getElementsByClassName('post');
+    var clearSearch = document.getElementById('clearSearch');
+    
+    if (input) {
+        clearSearch.style.display = 'block';
+    } else {
+        clearSearch.style.display = 'none';
     }
 
-    clearSearch.style.display = input ? 'inline-block' : 'none';
-    clearFilter.style.display = filterApplied ? 'inline-block' : 'none';
+    for (var i = 0; i < posts.length; i++) {
+        var name = posts[i].getAttribute('data-name').toLowerCase();
+        var categories = posts[i].getAttribute('data-categories').toLowerCase();
+        
+        if (name.includes(input) || categories.includes(input)) {
+            posts[i].style.display = '';
+        } else {
+            posts[i].style.display = 'none';
+        }
+    }
 }
 
-function filterPosts(tag) {
-    let posts = document.getElementsByClassName('post');
-    let clearFilter = document.getElementById('clearFilter');
-
-    for (let i = 0; i < posts.length; i++) {
-        let post = posts[i];
-        let tags = post.getElementsByClassName('tag');
-        let found = false;
-        for (let j = 0; j < tags.length; j++) {
-            if (tags[j].textContent === '#' + tag) {
-                found = true;
-                break;
-            }
+function filterByTag(tag) {
+    var posts = document.getElementsByClassName('post');
+    var clearFilter = document.getElementById('clearFilter');
+    
+    for (var i = 0; i < posts.length; i++) {
+        var categories = posts[i].getAttribute('data-categories').toLowerCase();
+        
+        if (categories.includes(tag.toLowerCase())) {
+            posts[i].style.display = '';
+        } else {
+            posts[i].style.display = 'none';
         }
-        post.style.display = found ? '' : 'none';
     }
 
-    clearFilter.style.display = 'inline-block';
+    clearFilter.style.display = 'block';
 }
 
 function clearFilter() {
-    let posts = document.getElementsByClassName('post');
-    for (let i = 0; i < posts.length; i++) {
+    var posts = document.getElementsByClassName('post');
+    var clearFilter = document.getElementById('clearFilter');
+
+    for (var i = 0; i < posts.length; i++) {
         posts[i].style.display = '';
     }
 
-    document.getElementById('clearFilter').style.display = 'none';
+    clearFilter.style.display = 'none';
 }
 
 function clearSearch() {
