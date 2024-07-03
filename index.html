@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcard Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header-container"></div>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="searchPosts()">
+            <span id="clearSearch" onclick="clearSearch()">x</span>
+        </div>
+        <div id="postList">
+            <div class="post" data-name="John" data-categories="#ppc #india">
+                <h2>Postcard from India</h2>
+                <p>Received a beautiful postcard from John in India.</p>
+                <div class="tags">
+                    <span onclick="filterByTag('#ppc')">#ppc</span>
+                    <span onclick="filterByTag('#india')">#india</span>
+                </div>
+            </div>
+            <div class="post" data-name="Jane" data-categories="#special cancellation #russia">
+                <h2>Special Cancellation from Russia</h2>
+                <p>Received a postcard with a special cancellation from Jane in Russia.</p>
+                <div class="tags">
+                    <span onclick="filterByTag('#special cancellation')">#special cancellation</span>
+                    <span onclick="filterByTag('#russia')">#russia</span>
+                </div>
+            </div>
+            <!-- Add more posts here -->
+        </div>
+    </div>
+    <div class="footer-container"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
