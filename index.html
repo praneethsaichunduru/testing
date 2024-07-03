@@ -7,37 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header-container"></div>
-    <div class="header-menu-container"></div>
-    <div class="container">
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="searchPosts()">
-            <span id="clearSearch" onclick="clearSearch()">x</span>
+    <header>
+        <div class="header-content">
+            <h1>Postcard Blog</h1>
+            <div id="header-menu"></div>
         </div>
-        <div id="postList">
-            <div class="post" data-name="John" data-categories="#ppc #india">
-                <h2>Postcard from India</h2>
-                <p>Received a beautiful postcard from John in India.</p>
-                <div class="tags">
-                    <span onclick="filterByTag('#ppc')">#ppc</span>
-                    <span onclick="filterByTag('#india')">#india</span>
-                </div>
-            </div>
-            <div class="post" data-name="Jane" data-categories="#special cancellation #russia">
-                <h2>Special Cancellation from Russia</h2>
-                <p>Received a postcard with a special cancellation from Jane in Russia.</p>
-                <div class="tags">
-                    <span onclick="filterByTag('#special cancellation')">#special cancellation</span>
-                    <span onclick="filterByTag('#russia')">#russia</span>
-                </div>
-            </div>
-            <!-- Add more posts here -->
-        </div>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="searchPosts()">
+        <button id="clearSearch" onclick="clearSearch()">x</button>
         <button id="clearFilter" onclick="clearFilter()" style="display:none;">Clear Filter</button>
-        <button id="jumpToTop" onclick="jumpToTop()">Jump to Top</button>
     </div>
-    <div class="footer-container"></div>
+    <div id="posts">
+        <div class="post">
+            <h2>Postcard from India</h2>
+            <p>Received a beautiful postcard from John in India.</p>
+            <div class="tags">
+                <span class="tag" onclick="filterPosts('ppc')">#ppc</span>
+                <span class="tag" onclick="filterPosts('india')">#india</span>
+            </div>
+        </div>
+        <div class="post">
+            <h2>Special Cancellation from Russia</h2>
+            <p>Received a postcard with a special cancellation from Jane in Russia.</p>
+            <div class="tags">
+                <span class="tag" onclick="filterPosts('special cancellation')">#special cancellation</span>
+                <span class="tag" onclick="filterPosts('russia')">#russia</span>
+            </div>
+        </div>
+    </div>
+    <button id="jumpToTop" onclick="jumpToTop()">Jump to Top</button>
+    <footer id="footer"></footer>
 
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
